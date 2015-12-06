@@ -1,26 +1,36 @@
 {
   "name": "my_api_app_client",
   "version": "0.0.1",
-  "description": "",
+  "description": "My Api app client",
   "repository": "https://github.com/Funfun/my_api_app_client",
   "main": "js/app.js",
   "dependencies": {
     "flux": "^2.0.0",
     "react": "^0.12.0",
-    "fluxxor": "^1.7.3"
+    "fluxxor": "^1.7.3",
+    "react-mixin": "^1.1.0",
+    "react-router": "^0.13.2",
+    "reqwest": "^1.1.5",
+    "when": "^3.7.2"
   },
   "devDependencies": {
-    "browserify": "^6.2.0",
-    "envify": "^3.0.0",
-    "jest-cli": "^0.4.3",
-    "reactify": "^0.15.2",
-    "uglify-js": "~2.4.15",
+    "babelify": "^6.1.0",
+    "browser-sync": "^2.1.6",
+    "browserify": "^8.0.3",
+    "nodemon": "^1.5.0",
+    "rework": "^1.0.1",
+    "rework-npm": "^1.0.0",
+    "rework-npm-cli": "^0.1.1",
+    "serve": "^1.4.0",
+    "uglify-js": "^2.4.15",
     "watchify": "^2.1.1"
   },
   "scripts": {
-    "start": "watchify -o js/bundle.js -v -d js/app.js",
-    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js",
-    "test": "jest"
+    "start": "npm run build && serve .",
+    "build": "npm run build-js",
+    "watch": "npm run watch-js & serve .",
+    "build": "browserify --extension=.jsx --extension=.js js/app.jsx | uglifyjs -cm > js/bundle.min.js",
+    "watch-js": "watchify --extension=.jsx --extension=.js js/app.jsx -o js/bundle.js --debug --verbose"
   },
   "author": "Tsyren Ochirov",
   "browserify": {
@@ -28,8 +38,5 @@
       "reactify",
       "envify"
     ]
-  },
-  "jest": {
-    "rootDir": "./js"
   }
 }
