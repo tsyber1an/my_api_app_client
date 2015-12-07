@@ -32,14 +32,16 @@ export default class AuthenticatedApp extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <nav className="navbar navbar-default">
-          <div className="navbar-header">
-            <a className="navbar-brand" href="/">My Api App</a>
-          </div>
+      <div className="row">
+        <div className="col s12 m4 l3">
+          <Link to="home">My Api App</Link>
           {this.headerItems}
-        </nav>
-        <RouteHandler/>
+        </div>
+        <div className="col s12 m8 l9">
+          <div className="row">
+            <RouteHandler/>
+          </div>
+        </div>
       </div>
     );
   }
@@ -56,7 +58,7 @@ export default class AuthenticatedApp extends React.Component {
       return (
       <ul className="nav navbar-nav navbar-right">
         <li>
-          <Link to="home">Home</Link>
+          <Link to="users">Users</Link>
         </li>
       </ul>)
     }

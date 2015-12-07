@@ -7,21 +7,23 @@ class LoginStore extends BaseStore {
     super();
     this.subscribe(() => this._registerToActions.bind(this))
     this._user = null;
+    this._encodedCredentials = null;
   }
 
   _registerToActions(action) {
     switch(action.actionType) {
       case LOGIN_USER:
         this._user = action.userData;
-        this.emitChange();
-        break;
-      case LOGOUT_USER:
-        this._user = null;
+        this._encodedCredentials = action.encodedCredentials;
         this.emitChange();
         break;
       default:
         break;
     };
+  }
+
+  get encodedCredentials(){
+    return this._encodedCredentials;
   }
 
   get user() {

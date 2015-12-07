@@ -1,6 +1,7 @@
 import React from 'react/addons';
 import ReactMixin from 'react-mixin';
 import Auth from '../services/AuthService'
+import linkState from 'react-link-state';
 
 export default class Login extends React.Component {
 
@@ -24,22 +25,22 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div className="login jumbotron center-block">
-        <h1>Login</h1>
-        <form role="form">
-        <div className="form-group">
-          <label htmlFor="login">Login</label>
-          <input type="text" valueLink={this.linkState('login')} className="form-control" id="login" placeholder="login" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input type="password" valueLink={this.linkState('password')} className="form-control" id="password" ref="password" placeholder="Password" />
-        </div>
-        <button type="submit" className="btn btn-default" onClick={this.login.bind(this)}>Submit</button>
-      </form>
+      <div className="valign-wrapper row">
+        <div className="login valign">
+          <h1>Login</h1>
+          <form role="form">
+          <div className="form-group">
+            <label htmlFor="login">Login</label>
+            <input type="text" valueLink={linkState(this, 'login')} className="form-control" id="login" placeholder="login" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input type="password" valueLink={linkState(this, 'password')} className="form-control" id="password" ref="password" placeholder="Password" />
+          </div>
+          <button type="submit" className="btn btn-default" onClick={this.login.bind(this)}>Submit</button>
+        </form>
+      </div>
     </div>
     );
   }
 }
-
-ReactMixin(Login.prototype, React.addons.LinkedStateMixin);

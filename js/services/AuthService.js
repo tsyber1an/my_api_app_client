@@ -6,6 +6,7 @@ import LoginActions from '../actions/LoginActions';
 class AuthService {
 
   login(encodedCredentials) {
+    this._encodedCredentials = encodedCredentials;
     return this.handleAuth(when(request({
       url: LOGIN_URL,
       method: 'POST',
@@ -19,12 +20,15 @@ class AuthService {
   }
 
   handleAuth(loginPromise) {
+    var encodedCredentials = this._encodedCredentials;
     return loginPromise
       .then(function(response) {
-        LoginActions.loginUser(response);
+        LoginActions.loginUser(response, encodedCredentials);
         return true;
       });
   }
+
+
 }
 
 export default new AuthService()
