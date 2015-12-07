@@ -12,11 +12,17 @@ export default {
       encodedCredentials: encodedCredentials
     });
 
-    if( savedDigest == encodedCredentials ){
-      var nextPath = RouterContainer.get().getCurrentQuery().nextPath || '/';
-      RouterContainer.get().transitionTo(nextPath);
-      localStorage.setItem('digest', encodedCredentials);
-    }
+    var nextPath = RouterContainer.get().getCurrentQuery().nextPath || '/';
+    RouterContainer.get().transitionTo(nextPath);
+    localStorage.setItem('digest', encodedCredentials);
 
+  },
+
+  logoutUser: () => {
+    RouterContainer.get().transitionTo('/login');
+    localStorage.removeItem('digest');
+    AppDispatcher.dispatch({
+      actionType: LOGOUT_USER
+    });
   }
 }

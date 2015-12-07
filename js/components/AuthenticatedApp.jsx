@@ -46,6 +46,11 @@ export default class AuthenticatedApp extends React.Component {
     );
   }
 
+  logout(e) {
+    e.preventDefault();
+    AuthService.logout();
+  }
+
   get headerItems() {
     if (!this.state.userLoggedIn) {
       return (
@@ -62,6 +67,9 @@ export default class AuthenticatedApp extends React.Component {
         </li>
         <li>
           <Link to="epics">Epics</Link>
+        </li>
+        <li>
+          <a href='' onClick={this.logout}>Logout</a>
         </li>
       </ul>)
     }

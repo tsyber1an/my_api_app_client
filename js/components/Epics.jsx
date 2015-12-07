@@ -5,6 +5,10 @@ import EpicStore from '../stores/EpicStore';
 import EpicsService from '../services/EpicsService';
 
 class EpicItem extends React.Component {
+    constructor(props){
+      super(props)
+      this.state = {display: this.props.role && this.props.role == 0 ? "inline" : 'none'}
+    }
     handleClick(e){
       e.preventDefault()
 
@@ -12,13 +16,14 @@ class EpicItem extends React.Component {
       EpicsService.deleteEpic(epicId)
     }
     render() {
-        return (
-          <div>
-            <span className="title">{this.props.epicData.title}</span>
-            <p>{this.props.epicData.description}</p>
-            <a href="#!" className="secondary-content" onClick={this.handleClick.bind(this)}><i className="material-icons">delete</i></a>
-          </div>
-        )
+
+      return (
+        <div>
+          <span className="title">{this.props.epicData.title}</span>
+          <p>{this.props.epicData.description}</p>
+          <a href="#!" className="secondary-content" onClick={this.handleClick.bind(this)} style={{display: this.state.display}}><i className="material-icons">delete</i></a>
+        </div>
+      )
     }
 }
 
@@ -52,13 +57,14 @@ export default AuthenticatedComponent(class Epics extends React.Component {
   render() {
     var epics = this.state.epics;
 
+    var role = this.props.user.role;
     return (
       <div className="row">
         <Link className="btn-floating btn-large waves-effect waves-light red" to="newEpic"><i className="material-icons">add</i></Link>
         <ul className="collection">
           <li className="collection-header"><h4>Epics</h4></li>
           {Object.keys(epics).map(function(id){
-            return <li className="collection-item avatar" key={id}><EpicItem epicData={epics[id]}/></li>
+            return <li className="collection-item avatar" key={id}><EpicItem role={role} epicData={epics[id]}/></li>
           })}
         </ul>
       </div>

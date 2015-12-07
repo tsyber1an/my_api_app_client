@@ -19,6 +19,10 @@ class AuthService {
     })));
   }
 
+  logout() {
+    LoginActions.logoutUser();
+  }
+
   handleAuth(loginPromise) {
     var encodedCredentials = this._encodedCredentials;
     return loginPromise

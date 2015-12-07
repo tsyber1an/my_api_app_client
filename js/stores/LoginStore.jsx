@@ -17,6 +17,10 @@ class LoginStore extends BaseStore {
         this._encodedCredentials = action.encodedCredentials;
         this.emitChange();
         break;
+      case LOGOUT_USER:
+        this._user = null;
+        this._encodedCredentials = null;
+        this.emitChange();
       default:
         break;
     };
