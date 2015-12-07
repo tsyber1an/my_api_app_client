@@ -5,8 +5,8 @@
   "repository": "https://github.com/Funfun/my_api_app_client",
   "main": "js/app.js",
   "dependencies": {
-    "flux": "^2.0.0",
-    "react": "^0.12.0",
+    "flux": "^2.0.1",
+    "react": "^0.13",
     "fluxxor": "^1.7.3",
     "react-mixin": "^1.1.0",
     "react-router": "^0.13.2",
@@ -35,8 +35,7 @@
   "author": "Tsyren Ochirov",
   "browserify": {
     "transform": [
-      "reactify",
-      "envify"
+      "babelify"
     ]
   }
 }
