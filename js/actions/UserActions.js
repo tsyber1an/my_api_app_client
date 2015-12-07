@@ -1,5 +1,5 @@
 import AppDispatcher from '../dispatchers/AppDispatcher.js';
-import {USERS_GET, CREATE_USER} from '../constants/UserConstants.js';
+import {USERS_GET, CREATE_USER, DELETE_USER} from '../constants/UserConstants.js';
 import RouterContainer from '../services/RouterContainer';
 
 export default {
@@ -15,5 +15,11 @@ export default {
       userPayload: payload
     });
     RouterContainer.get().transitionTo('/users');
+  },
+  deleteUser: (id) => {
+    AppDispatcher.dispatch({
+      actionType: DELETE_USER,
+      userId: id
+    });
   }
 }

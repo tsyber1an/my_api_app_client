@@ -6,6 +6,12 @@ import UsersService from '../services/UsersService';
 
 var USER_ROLES = ['ADMIN', 'USER', 'GUEST'];
 class UserItem extends React.Component {
+    handleClick(e){
+      e.preventDefault()
+
+      var userId = this.props.userData.id;
+      UsersService.deleteUser(userId)
+    }
     render() {
         return (
           <div>
@@ -13,7 +19,7 @@ class UserItem extends React.Component {
             <p>
               {USER_ROLES[this.props.userData.role]}
             </p>
-            <a href="#!" className="secondary-content" }><i className="material-icons">delete</i></a>
+            <a href="#!" className="secondary-content" onClick={this.handleClick.bind(this)}><i className="material-icons">delete</i></a>
           </div>
         )
     }

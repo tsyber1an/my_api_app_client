@@ -1,4 +1,4 @@
-import {USERS_GET, CREATE_USER} from '../constants/UserConstants';
+import {USERS_GET, CREATE_USER, DELETE_USER} from '../constants/UserConstants';
 import BaseStore from './BaseStore';
 
 class UserStore extends BaseStore {
@@ -18,6 +18,10 @@ class UserStore extends BaseStore {
         break;
       case CREATE_USER:
         this._users.push(action.userPayload);
+        this.emitChange();
+        break;
+      case DELETE_USER:
+        this._users = this._users.filter(function(u){ return u.id != action.userId })
         this.emitChange();
         break;
       default:

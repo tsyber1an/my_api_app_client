@@ -30,7 +30,7 @@
     "start": "npm run build && serve .",
     "build": "npm run build-js",
     "watch": "npm run watch-js & serve .",
-    "build": "browserify --extension=.jsx --extension=.js js/app.jsx | uglifyjs -cm > js/bundle.min.js",
+    "build": "browserify --extension=.jsx --extension=.js js/app.jsx -o js/bundle.js | uglifyjs -cm > js/bundle.min.js",
     "watch-js": "watchify --extension=.jsx --extension=.js js/app.jsx -o js/bundle.js --debug --verbose"
   },
   "author": "Tsyren Ochirov",

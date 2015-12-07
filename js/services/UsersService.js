@@ -41,6 +41,22 @@ class UsersService {
     });
   }
 
+  deleteUser(id){
+    request({
+      url: USERS_URL + '/' + id,
+      method: 'DELETE',
+      crossOrigin: true,
+      type: 'json',
+      headers: {
+        'Accept': 'application/vnd.example.v1',
+        'Authorization': 'Basic '+ LoginStore.encodedCredentials
+      }
+    })
+    .then(function(response) {
+      UserActions.deleteUser(id);
+    });
+  }
+
 }
 
 export default new UsersService()
