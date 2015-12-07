@@ -4,9 +4,18 @@ import AuthenticatedComponent from './AuthenticatedComponent';
 import UserStore from '../stores/UserStore';
 import UsersService from '../services/UsersService';
 
+var USER_ROLES = ['ADMIN', 'USER', 'GUEST'];
 class UserItem extends React.Component {
     render() {
-        return <span className="title">{this.props.userData.login}</span>
+        return (
+          <div>
+            <span className="title">{this.props.userData.login}</span>
+            <p>
+              {USER_ROLES[this.props.userData.role]}
+            </p>
+            <a href="#!" className="secondary-content" }><i className="material-icons">delete</i></a>
+          </div>
+        )
     }
 }
 
@@ -46,7 +55,7 @@ export default AuthenticatedComponent(class Users extends React.Component {
         <ul className="collection">
           <li className="collection-header"><h4>Users</h4></li>
           {Object.keys(users).map(function(id){
-            return <li className="collection-item" key={id}><UserItem userData={users[id]}/></li>
+            return <li className="collection-item avatar" key={id}><UserItem userData={users[id]}/></li>
           })}
         </ul>
       </div>

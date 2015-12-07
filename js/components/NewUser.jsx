@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
+import { Route, RouteHandler, Link } from 'react-router';
 import AuthenticatedComponent from './AuthenticatedComponent';
 import UserStore from '../stores/UserStore';
 import UserActions from '../actions/UserActions';
@@ -56,7 +57,12 @@ export default AuthenticatedComponent(class NewUser extends React.Component {
               </div>
             </div>
           <div className="row">
-            <button type="submit" className="btn waves-effect waves-light">Add User</button>
+            <div class="input-field col s6">
+              <button type="submit" className="btn waves-effect waves-light">Add User</button>
+            </div>
+            <div class="input-field col s6">
+              <Link className="btn-flat" to="users">Cancel</Link>
+            </div>
           </div>
         </form>
       </div>
