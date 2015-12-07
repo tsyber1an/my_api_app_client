@@ -4,5 +4,6 @@ export default {
   USERS_URL: BASE_URL + 'users',
   USERS_GET: 'USERS_GET',
   CREATE_USER: 'CREATE_USER',
-  DELETE_USER: 'DELETE_USER'
+  DELETE_USER: 'DELETE_USER',
+  USER_ROLES: ['admin', 'user', 'guest']
 }

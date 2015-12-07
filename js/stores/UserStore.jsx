@@ -1,4 +1,4 @@
-import {USERS_GET, CREATE_USER, DELETE_USER} from '../constants/UserConstants';
+import {USERS_GET, CREATE_USER, DELETE_USER, USER_ROLES} from '../constants/UserConstants';
 import BaseStore from './BaseStore';
 
 class UserStore extends BaseStore {
@@ -38,7 +38,7 @@ class UserStore extends BaseStore {
       login: '',
       password: '',
       password_confirmation: '',
-      role: 1
+      role: USER_ROLES[1]
     }
   }
 }

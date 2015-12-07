@@ -3,8 +3,8 @@ import { Route, RouteHandler, Link } from 'react-router';
 import AuthenticatedComponent from './AuthenticatedComponent';
 import UserStore from '../stores/UserStore';
 import UsersService from '../services/UsersService';
+import {USER_ROLES} from '../constants/UserConstants';
 
-var USER_ROLES = ['ADMIN', 'USER', 'GUEST'];
 class UserItem extends React.Component {
     handleClick(e){
       e.preventDefault()

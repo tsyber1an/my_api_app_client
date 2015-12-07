@@ -60,6 +60,9 @@ export default class AuthenticatedApp extends React.Component {
         <li>
           <Link to="users">Users</Link>
         </li>
+        <li>
+          <Link to="epics">Epics</Link>
+        </li>
       </ul>)
     }
   }

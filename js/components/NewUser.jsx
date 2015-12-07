@@ -7,7 +7,13 @@ import UserActions from '../actions/UserActions';
 import UsersService from '../services/UsersService';
 import RouterContainer from '../services/RouterContainer'
 import linkState from 'react-link-state';
+import {USER_ROLES} from '../constants/UserConstants';
 
+class UserRoleOption extends React.Component {
+  render() {
+    return <option value={this.props.role_value}>{this.props.role_name}</option>
+  }
+}
 
 export default AuthenticatedComponent(class NewUser extends React.Component {
   constructor(props) {
@@ -20,6 +26,14 @@ export default AuthenticatedComponent(class NewUser extends React.Component {
     return UserStore.newUser
   }
 
+  componentDidMount(){
+    $('select').material_select();
+  }
+
+  componentDidUpdate(){
+    $('select').material_select();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -29,6 +43,19 @@ export default AuthenticatedComponent(class NewUser extends React.Component {
         UsersService.addUser(this.state);
         this.setState(this.getNewUserState());
     }
+  }
+  getUserRoleOptions(){
+    var options = [], i;
+    {for (i = 0; i < USER_ROLES.length; i++) {
+      options.push(<UserRoleOption role_name={USER_ROLES[i]} role_value={i}/>)
+    }}
+
+    return options;
+  }
+
+  // TODO: not impl.
+  onSelectChange(){
+    return false;
   }
 
   render() {
@@ -56,19 +83,27 @@ export default AuthenticatedComponent(class NewUser extends React.Component {
                 <label htmlFor="password_confirmation">Password confirmation</label>
               </div>
             </div>
-          <div className="row">
-            <div class="input-field col s6">
-              <button type="submit" className="btn waves-effect waves-light">Add User</button>
+
+            <div className="row">
+              <div className="input-field col s6">
+                <select name="role" onChange={this.onSelectChange.bind(this)}>
+                    {this.getUserRoleOptions()}
+                </select>
+                <label htmlFor="role">Role</label>
+              </div>
             </div>
-            <div class="input-field col s6">
-              <Link className="btn-flat" to="users">Cancel</Link>
+
+            <div className="row">
+              <div className="input-field col s3">
+                <button type="submit" className="btn waves-effect waves-light">Add User</button>
+              </div>
+              <div className="input-field col s3">
+                <Link className="btn-flat" to="users">Cancel</Link>
+              </div>
             </div>
-          </div>
         </form>
       </div>
     )
   }
 
 });
-
-ReactMixin(AuthenticatedComponent.prototype, React.addons.LinkedStateMixin);
