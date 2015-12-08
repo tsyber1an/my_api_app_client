@@ -4,7 +4,7 @@ My API App Client
 Running
 -------
 
-`npm install``npm start`
+`npm install && npm start`
 
 Default configuration
 ---------------------
